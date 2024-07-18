@@ -17,9 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from bin import views as bin_views
+
 urlpatterns = [
+    path("", include("mainpage.urls")),
     path("admin/", admin.site.urls),
     path("bin/", include("bin.urls")),
-    path("/", include("mainpage.urls")),
     path("app/", include("miniapp.urls")),
+    path("<str:link>/", bin_views.show_note, name="Note")
 ]
